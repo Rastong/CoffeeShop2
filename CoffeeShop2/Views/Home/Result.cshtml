@@ -1,0 +1,19 @@
+﻿@model List<Customer>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@foreach (Customer c in Model)
+{
+    DateTime dateTime = new DateTime();
+    dateTime = c.Birthday ??= DateTime.Today;
+    <div>
+        @c.FirstName
+        @dateTime.ToShortDateString()
+        Signed up for promos: @c.Promos
+    </div>
+        <a asp-controller="Home"
+           asp-action="Detailed"
+           asp-route-id="@c.Id"><button>Click me for more details</button></a>   
+}
